@@ -14,8 +14,14 @@ function makeSnowflake() {
     snowflake.style.animation = `fall ${duration}s linear`;
 
     body.appendChild(snowflake);
+
+    setTimeout(() => {
+        body.removeChild(snowflake);
+        makeSnowflake();
+    }, (duration + delay) * 1000);
 }
 
 for (let index = 0; index < 50; index++) {
-    makeSnowflake();
+    setTimeout(makeSnowflake, 500 * index);
 }
+
